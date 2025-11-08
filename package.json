@@ -1,0 +1,31 @@
+{
+  "name": "urbangenie",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "freshcuts:dev": "next dev apps/next-web/freshcuts",
+    "freshcuts:build": "npx next build apps/next-web/freshcuts"
+  },
+  "dependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "^14.2.15",
+    "firebase": "^11.0.2",
+    "typescript": "^5.0.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/node": "^20",
+    "@heroicons/react": "^2.0.18"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.0",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.15",
+    "tailwindcss": "^3.3.6",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32"
+  },
+  "packageManager": "pnpm@8.0.0"
+}

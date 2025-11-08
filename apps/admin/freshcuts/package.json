@@ -1,0 +1,19 @@
+{
+  "name": "@urbangenie/freshcuts-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001"
+  },
+  "dependencies": {
+    "@urbangenie/ui": "workspace:*",
+    "@urbangenie/lib": "workspace:*",
+    "@urbangenie/types": "workspace:*",
+    "firebase": "^11.0.2",
+    "next": "^14.2.15",
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}
