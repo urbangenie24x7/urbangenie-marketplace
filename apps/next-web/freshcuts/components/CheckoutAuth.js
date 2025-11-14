@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function CheckoutAuth({ onAuthSuccess, onCancel }) {
+export default function CheckoutAuth({ onAuthSuccess, onCancel, updateUser }) {
   const [isLogin, setIsLogin] = useState(true)
   const [formData, setFormData] = useState({
     email: '',
@@ -89,6 +89,7 @@ export default function CheckoutAuth({ onAuthSuccess, onCancel }) {
         const userSnap = await getDocs(usersQuery)
         const userData = { id: userSnap.docs[0].id, ...userSnap.docs[0].data() }
         localStorage.setItem('currentUser', JSON.stringify(userData))
+        if (updateUser) updateUser(userData)
         onAuthSuccess(userData)
       } else {
         // Create new customer account
@@ -103,6 +104,7 @@ export default function CheckoutAuth({ onAuthSuccess, onCancel }) {
         const docRef = await addDoc(collection(db, 'users'), newUser)
         const userData = { id: docRef.id, ...newUser }
         localStorage.setItem('currentUser', JSON.stringify(userData))
+        if (updateUser) updateUser(userData)
         onAuthSuccess(userData)
       }
     } catch (error) {

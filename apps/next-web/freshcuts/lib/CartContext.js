@@ -1,20 +1,26 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import React from 'react'
 
-const CartContext = createContext()
+const CartContext = React.createContext()
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = React.useState([])
+  const [currentUser, setCurrentUser] = React.useState(null)
+  const [loading, setLoading] = React.useState(false)
+  const [deliveryOptions, setDeliveryOptions] = React.useState({})
 
-  useEffect(() => {
-    const savedCart = localStorage.getItem('freshcuts-cart')
-    if (savedCart) {
-      setCartItems(JSON.parse(savedCart))
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedUser = localStorage.getItem('currentUser')
+      if (savedUser) {
+        try {
+          const user = JSON.parse(savedUser)
+          setCurrentUser(user)
+        } catch (error) {
+          console.error('Error parsing saved user:', error)
+        }
+      }
     }
   }, [])
-
-  useEffect(() => {
-    localStorage.setItem('freshcuts-cart', JSON.stringify(cartItems))
-  }, [cartItems])
 
   const addToCart = (product, variation = null) => {
     const cartItem = {
@@ -23,8 +29,9 @@ export function CartProvider({ children }) {
       name: product.name,
       price: variation ? Math.round(product.price * variation.priceMultiplier) : product.price,
       imageUrl: product.imageUrl,
+      vendorId: product.vendorId || 'unknown-vendor',
       vendorName: product.vendorName || 'Unknown Vendor',
-      variation: variation,
+      selectedVariation: variation,
       quantity: 1
     }
 
@@ -50,6 +57,7 @@ export function CartProvider({ children }) {
       removeFromCart(itemId)
       return
     }
+    
     setCartItems(prev => 
       prev.map(item => 
         item.id === itemId ? { ...item, quantity } : item
@@ -65,27 +73,46 @@ export function CartProvider({ children }) {
     return cartItems.reduce((count, item) => count + item.quantity, 0)
   }
 
-  const clearCart = () => {
-    setCartItems([])
+  const updateDeliveryOption = (vendorId, option) => {
+    setDeliveryOptions(prev => ({ ...prev, [vendorId]: option }))
   }
 
-  return (
-    <CartContext.Provider value={{
+  const clearCart = () => {
+    setCartItems([])
+    setDeliveryOptions({})
+  }
+
+  const updateUser = (user) => {
+    setCurrentUser(user)
+    if (typeof window !== 'undefined') {
+      if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user))
+      } else {
+        localStorage.removeItem('currentUser')
+      }
+    }
+  }
+
+  return React.createElement(CartContext.Provider, {
+    value: {
       cartItems,
       addToCart,
       removeFromCart,
       updateQuantity,
       getCartTotal,
       getCartCount,
-      clearCart
-    }}>
-      {children}
-    </CartContext.Provider>
-  )
+      clearCart,
+      updateUser,
+      currentUser,
+      loading,
+      deliveryOptions,
+      updateDeliveryOption
+    }
+  }, children)
 }
 
 export const useCart = () => {
-  const context = useContext(CartContext)
+  const context = React.useContext(CartContext)
   if (!context) {
     throw new Error('useCart must be used within CartProvider')
   }

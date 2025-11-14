@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router'
 import Navigation from '../components/Navigation'
 import SEOHead from '../components/SEOHead'
 
 export default function Unauthorized() {
+  const router = useRouter()
+
   return (
     <>
       <SEOHead 
@@ -34,7 +37,7 @@ export default function Unauthorized() {
             You don't have permission to access this page.
           </p>
           <button
-            onClick={() => window.history.back()}
+            onClick={() => router.push('/')}
             style={{
               padding: '12px 24px',
               backgroundColor: '#16a34a',

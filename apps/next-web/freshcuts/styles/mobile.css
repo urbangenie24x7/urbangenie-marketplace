@@ -1,0 +1,64 @@
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px !important;
+    max-width: 100% !important;
+  }
+  
+  .grid-2-cols {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .flex-row {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  
+  .tab-nav {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+  
+  .tab-button {
+    font-size: 14px !important;
+    padding: 10px 15px !important;
+  }
+  
+  .card {
+    padding: 15px !important;
+    margin: 10px 0 !important;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .button-group {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  
+  .button-group button {
+    width: 100% !important;
+    margin: 5px 0 !important;
+  }
+  
+  /* Checkout Flow Mobile Styles */
+  .checkout-modal {
+    padding: 15px !important;
+    margin: 10px !important;
+  }
+  
+  .checkout-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .checkout-buttons {
+    flex-direction: column !important;
+  }
+  
+  .checkout-buttons button {
+    width: 100% !important;
+    margin: 5px 0 !important;
+  }
+}

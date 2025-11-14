@@ -1,5 +1,5 @@
 {
-  "name": "freshcuts-web",
+  "name": "freshcuts",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,5 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "firebase": "^10.5.0",
+    "next": "14.0.0",
+    "razorpay": "^2.9.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-next": "14.0.0"
   }
 }

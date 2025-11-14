@@ -31,7 +31,7 @@ export const requireAuth = (allowedRoles = []) => {
   
   if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
     if (typeof window !== 'undefined') {
-      window.location.href = '/unauthorized'
+      window.location.href = '/login'
     }
     return null
   }

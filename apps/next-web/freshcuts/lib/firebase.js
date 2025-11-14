@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app'
+import { initializeApp, getApps, getApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
@@ -12,17 +12,7 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 }
 
-if (!firebaseConfig.apiKey || firebaseConfig.apiKey === 'YOUR_REAL_FIREBASE_API_KEY') {
-  throw new Error('Firebase configuration missing. Please add your real Firebase API key to .env.local')
-}
-
-let app
-try {
-  app = initializeApp(firebaseConfig)
-} catch (error) {
-  console.error('Firebase initialization failed:', error)
-  throw error
-}
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp()
 
 export const auth = getAuth(app)
 export const db = getFirestore(app)

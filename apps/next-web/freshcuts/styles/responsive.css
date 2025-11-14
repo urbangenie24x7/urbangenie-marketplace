@@ -1,0 +1,146 @@
+/* Mobile-first responsive styles for FreshCuts */
+
+/* Base mobile styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px !important;
+  }
+  
+  /* Navigation adjustments */
+  nav {
+    padding: 8px 15px !important;
+  }
+  
+  nav .flex-row {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 15px !important;
+  }
+  
+  /* Grid layouts */
+  .grid-2-cols {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Category cards */
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  
+  /* Product cards */
+  .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Vendor cards */
+  .vendor-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Cart items */
+  .cart-item {
+    grid-template-columns: 60px 1fr auto !important;
+    gap: 10px !important;
+    padding: 15px !important;
+  }
+  
+  .cart-item img {
+    width: 60px !important;
+    height: 50px !important;
+  }
+  
+  /* Hide quantity controls on mobile, show stacked */
+  .quantity-controls {
+    flex-direction: column !important;
+    gap: 5px !important;
+  }
+  
+  /* Buttons */
+  button {
+    font-size: 14px !important;
+    padding: 10px 16px !important;
+  }
+  
+  /* Typography */
+  h1 {
+    font-size: 24px !important;
+  }
+  
+  h2 {
+    font-size: 20px !important;
+  }
+  
+  h3 {
+    font-size: 16px !important;
+  }
+  
+  /* Checkout modal */
+  .checkout-modal {
+    width: 95vw !important;
+    margin: 10px !important;
+    padding: 20px !important;
+  }
+  
+  /* Form inputs */
+  input, select, textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+  
+  /* Quick actions grid */
+  .quick-actions {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Stats and sidebar */
+  .sidebar {
+    order: -1; /* Move sidebar to top on mobile */
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 15px !important;
+  }
+  
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .vendor-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1025px) {
+  .category-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  }
+  
+  .vendor-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  button, a, .clickable {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  /* Larger tap targets */
+  .nav-icon {
+    padding: 8px !important;
+  }
+}

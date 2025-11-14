@@ -1,13 +1,31 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { getCurrentUser, logout } from '../lib/auth'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../lib/firebase'
 
 export default function Navigation() {
   const [user, setUser] = useState(null)
+  const [brandLogo, setBrandLogo] = useState(null)
+  const [logoHeight, setLogoHeight] = useState(40)
 
   useEffect(() => {
     setUser(getCurrentUser())
+    loadBrandLogo()
   }, [])
+
+  const loadBrandLogo = async () => {
+    try {
+      const brandSnap = await getDocs(collection(db, 'brandSettings'))
+      if (brandSnap.docs.length > 0) {
+        const brandData = brandSnap.docs[0].data()
+        setBrandLogo(brandData.logo)
+        setLogoHeight(brandData.logoHeight || 40)
+      }
+    } catch (error) {
+      console.error('Error loading brand logo:', error)
+    }
+  }
 
   return (
     <nav style={{
@@ -26,9 +44,23 @@ export default function Navigation() {
           color: 'white', 
           textDecoration: 'none', 
           fontSize: '20px', 
-          fontWeight: 'bold' 
+          fontWeight: 'bold',
+          display: 'flex',
+          alignItems: 'center'
         }}>
-          FreshCuts
+          {brandLogo ? (
+            <img 
+              src={brandLogo} 
+              alt="FreshCuts" 
+              style={{ 
+                height: `${logoHeight}px`, 
+                maxHeight: '50px',
+                objectFit: 'contain'
+              }} 
+            />
+          ) : (
+            'FreshCuts'
+          )}
         </Link>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
           {user ? (

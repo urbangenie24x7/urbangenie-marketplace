@@ -25,6 +25,9 @@ export default function FreshCutsAdmin() {
         <a href="/orders" className="bg-green-500 text-white px-4 py-2 rounded">Orders</a>
         <a href="/vendors" className="bg-purple-500 text-white px-4 py-2 rounded">Vendors</a>
         <a href="/payments" className="bg-orange-500 text-white px-4 py-2 rounded">Payments</a>
+        <a href="/pincodes" className="bg-indigo-500 text-white px-4 py-2 rounded">Pincodes</a>
+        <a href="/content" className="bg-red-500 text-white px-4 py-2 rounded">Content</a>
+        <a href="/vendor-applications" className="bg-yellow-500 text-white px-4 py-2 rounded">Vendor Applications</a>
       </nav>
     </div>
   )
