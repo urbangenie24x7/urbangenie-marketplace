@@ -2,7 +2,7 @@ const { initializeApp } = require('firebase/app')
 const { getFirestore, collection, getDocs, updateDoc, doc } = require('firebase/firestore')
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAR757jp5A9sKg45vqZckfwTCLSLC-PRGk',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || 'your-api-key-here',
   authDomain: 'freshcuts-5cb4c.firebaseapp.com',
   projectId: 'freshcuts-5cb4c',
   storageBucket: 'freshcuts-5cb4c.firebasestorage.app',
